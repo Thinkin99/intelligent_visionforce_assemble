@@ -140,14 +140,14 @@ for i in good_picture:
     R_all_end_to_base_1.append(RT[:3, :3])
     T_all_end_to_base_1.append(RT[:3, 3].reshape((3, 1)))
 
-print(R_all_end_to_base_1)
+# print(R_all_end_to_base_1)
 R, T = cv2.calibrateHandEye(R_all_end_to_base_1, T_all_end_to_base_1, R_all_chess_to_cam_1,
                             T_all_chess_to_cam_1)  # 手眼标定
 RT = np.column_stack((R, T))
 RT = np.row_stack((RT, np.array([0, 0, 0, 1])))  # 即为cam to end变换矩阵
 print('相机相对于末端的变换矩阵为：')
 
-# print(RT)
+print(RT)
 
 # 结果验证，原则上来说，每次结果相差较小
 for i in range(len(good_picture)):
